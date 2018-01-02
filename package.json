@@ -1,0 +1,41 @@
+{
+  "name": "ngrx-actions",
+  "version": "1.0.0",
+  "description": "Actions and Reducer Utility Library for NGRX",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://amcdnl@github.com/amcdnl/ngrx-actions.git"
+  },
+  "keywords": [
+    "ngrx",
+    "redux",
+    "state",
+    "store"
+  ],
+  "author": "Austin McDaniel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amcdnl/ngrx-actions/issues"
+  },
+  "homepage": "https://github.com/amcdnl/ngrx-actions#readme",
+  "dependencies": {},
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.10",
+    "@ngrx/effects": "^4.1.1",
+    "@ngrx/store": "^4.1.1",
+    "rxjs": "^5.5.6"
+  },
+  "devDependencies": {
+    "@ngrx/effects": "^4.1.1",
+    "@ngrx/store": "^4.1.1",
+    "ngrx": "^2.0.1",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.5.6",
+    "typescript": "^2.6.2"
+  }
+}
