@@ -7,6 +7,8 @@ Actions/reducer utility for NGRX. It provides 3 functions to make NGRX/redux mor
 - `ofAction(MyActionClass)`: Lettable operator for NGRX Effects
 - `createReducer(MyStoreClass)`: Reducer bootstrap function
 
+Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
+
 ## Getting Started
 To get started, you define an action just like you do today for NGRX:
 
@@ -85,3 +87,4 @@ export class MyEffects {
     );
 }
 ```
+
