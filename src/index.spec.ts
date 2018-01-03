@@ -67,4 +67,22 @@ describe('actions', () => {
     const res = reducer(undefined, new MyAction2());
     expect(res.foo).toBe(false);
   });
+
+  it('works with plain objects', () => {
+    class MyAction {
+      readonly type = 'myaction'
+    }
+
+    @Store({ foo: true })
+    class Bar {
+      @Action(MyAction)
+      foo(state) {
+        state.foo = false;
+      }
+    }
+
+    const reducer = createReducer(Bar);
+    const res = reducer(undefined, { type: 'myaction' });
+    expect(res.foo).toBe(false);
+  })
 });
