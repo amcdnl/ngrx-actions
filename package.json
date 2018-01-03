@@ -1,11 +1,11 @@
 {
   "name": "ngrx-actions",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Actions and Reducer Utility Library for NGRX",
   "main": "src/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build && jasmine **/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,8 @@
     "ngrx",
     "redux",
     "state",
-    "store"
+    "store",
+    "state-mangement"
   ],
   "author": "Austin McDaniel",
   "license": "MIT",
@@ -31,6 +32,8 @@
     "rxjs": "^5.5.6"
   },
   "devDependencies": {
+    "@types/jasmine": "^2.6.0",
+    "jasmine": "^2.8.0",
     "@ngrx/effects": "^4.1.1",
     "@ngrx/store": "^4.1.1",
     "ngrx": "^2.0.1",
