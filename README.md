@@ -9,7 +9,7 @@ Actions/reducer utility for NGRX. It provides 4 functions to make NGRX/redux mor
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
-See [changelog](CHANGELOG.md) for more latest changes.
+See [changelog](CHANGELOG.md) for latest changes.
 
 ## Whats this for?
 This is _sugar_ to help reduce boilerplate when using Redux patterns. That said, here's the high level of what it provides:
