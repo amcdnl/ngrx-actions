@@ -9,6 +9,14 @@ Actions/reducer utility for NGRX. It provides 3 functions to make NGRX/redux mor
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
+## Whats this for?
+This is _sugar_ to help reduce boilerplate when using Redux patterns. That said, here's the high level of what it provides:
+
+- Reducers become classes so its more logical organization
+- Automatically creates new instances so you don't have to handle spreads everywhere
+- Enables better type checking inside your actions
+- Reduces having to pass type constants by using type checking
+
 ## Getting Started
 To get started, lets install the package thru npm:
 
