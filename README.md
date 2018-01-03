@@ -1,6 +1,6 @@
 # NGRX Actions
 
-Actions/reducer utility for NGRX. It provides 3 functions to make NGRX/redux more Angular-tastic.
+Actions/reducer utility for NGRX. It provides 4 functions to make NGRX/redux more Angular-tastic.
 
 - `@Store(MyInitialState)`: Decorator for default state of a store.
 - `@Action(MyActionClass)`: Decorator for a action function.
