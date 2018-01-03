@@ -103,7 +103,7 @@ In the above example, I return a function that returns my `createReducer`. This 
 complains stating `Function expressions are not supported in decorators` if we just assign
 the `createReducer` method directly. This is a known issue and [other NGRX](https://github.com/ngrx/platform/issues/116) things suffer from it too.
 
-then pass that to your NGRX module just like normal:
+Next, pass that to your NGRX module just like normal:
 
 ```javascript
 @NgModule({
