@@ -6,6 +6,8 @@ Actions/reducer utility for NGRX. It provides 4 functions to make NGRX/redux mor
 - `@Action(...MyActionClass: Action[])`: Decorator for a action function.
 - `ofAction(MyActionClass)`: Lettable operator for NGRX Effects
 - `createReducer(MyStoreClass)`: Reducer bootstrap function
+- `ngrxSelect(myStoreInstance)`: Select connector
+- `@Select('my.prop')`: Select decorator
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
@@ -28,6 +30,7 @@ To get started, lets install the package thru npm:
 npm i ngrx-actions --S
 ```
 
+### Reducers
 Next, create an action just like you do with NGRX today:
 
 ```javascript
@@ -112,6 +115,7 @@ then pass that to your NGRX module just like normal:
 export class AppModule {}
 ```
 
+### Effects
 If you want to use NGRX effects, I've created a lettable operator that will allow you to
 pass the action class as the argument like this:
 
@@ -133,6 +137,30 @@ export class MyEffects {
     );
 }
 ```
+
+### Selects
+We didn't leave out selectors, there is a `Select` decorator that accepts a (deep) path string. This looks like:
+
+```javascript
+@Component({ ... })
+export class MyComponent {
+    @Select('my.prop.color') color$: Observable<string>;
+}
+```
+
+This can help clean up your store selects. To hook it up, in the `AppModule` you do:
+
+```javascript
+import { ngrxSelect } from 'ngrx-actions';
+@NgModule({ ... })
+export class AppModule {
+    constructor(store: Store<<MyState>>) {
+        ngrxSelect(store);
+    }
+}
+```
+
+And you can start using it in any component. It also works with feature stores too.
 
 ## Common Questions
 - _What about composition?_ Well since it creates a normal reducer function, you can still use all the same composition fns you already use.

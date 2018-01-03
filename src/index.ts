@@ -62,3 +62,23 @@ export function ofAction < T extends Action > (...allowedTypes: any[]) {
     });
   };
 }
+
+let store;
+export const ngrxSelect = (s => store = s);
+
+export function Select(path: string): any {
+  return function (target: any, name: string, descriptor: TypedPropertyDescriptor <any>): void {
+    if (delete target[name]) {
+      Object.defineProperty(target, name, {
+        get: () => store.select(state => getValue(state, path)),
+        enumerable: true,
+        configurable: true
+      });
+    }
+  };
+}
+
+function getValue(state, prop) {
+  if (prop) return prop.split('.').reduce((acc, part) => acc && acc[part], state);
+  return state;
+}

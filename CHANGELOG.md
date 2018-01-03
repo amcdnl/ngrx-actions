@@ -1,3 +1,6 @@
+# 1.2.0 - 1/3/17
+- Feature: Select decorator
+
 # 1.1.3 - 1/3/17
 - Fix: Effects mismatch
 
