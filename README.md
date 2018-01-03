@@ -69,6 +69,9 @@ export class MyStore {
     @Action(DeleteSuccess)
     deleteSuccess(state: MyState, action: DeleteSuccess) {
         const idx = state.collection.findIndex(r => r.myId === action.payload);
+        if (idx === -1) {
+          return state;
+        }
         const collection = [...state.collection];
         collection.splice(idx, 1);
         return { ...state, collection };
