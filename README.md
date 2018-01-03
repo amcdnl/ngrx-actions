@@ -10,7 +10,13 @@ Actions/reducer utility for NGRX. It provides 3 functions to make NGRX/redux mor
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
 ## Getting Started
-To get started, you define an action just like you do today for NGRX:
+To get started, lets install the package thru npm:
+
+```
+npm i ngrx-actions --S
+```
+
+Next, create an action just like you do with NGRX today:
 
 ```javascript
 export class MyAction implements Action {
@@ -25,6 +31,8 @@ decorated with the `Action` decorator with an argument of the action class
 you want to match it on.
 
 ```javascript
+import { Store, Action } from 'ngrx-actions';
+
 @Store({
     collection: [],
     selections: [],
@@ -65,13 +73,29 @@ To hook it up to NGRX, all you have to do is call `createReducer` function passi
 your store. Now pass the `myReducer` just like you would a function with a switch statement inside.
 
 ```javascript
+import { createReducer } from 'ngrx-actions';
 export const myReducer = createReducer(MyStore);
+```
+
+then pass that to your NGRX module just like normal:
+
+```javascript
+@NgModule({
+   imports: [
+      StoreModule.forRoot({
+         myReducer
+      })
+   ]
+})
+export class AppModule {}
 ```
 
 If you want to use NGRX effects, I've created a lettable operator that will allow you to
 pass the action class as the argument like this:
 
 ```javascript
+import { ofAction } from 'ngrx-actions';
+
 @Injectable()
 export class MyEffects {
     constructor(
