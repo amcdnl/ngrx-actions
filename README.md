@@ -122,3 +122,4 @@ export class MyEffects {
 
 ## Common Questions
 - What about composition? Well since it creates a normal reducer function, you can still use all the same composition fns you already use.
+- Will this work with normal Redux? While its designed for Angular and NGRX it would work perfectly fine for normal Redux. If that gets requested, I'll be happy to add better support too.
