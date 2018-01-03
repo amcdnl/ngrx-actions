@@ -1,3 +1,6 @@
+# 1.1.3 - 1/3/17
+- Fix: Effects mismatch
+
 # 1.1.2 - 1/3/17
 - Fix: Effects with normal objects
 
