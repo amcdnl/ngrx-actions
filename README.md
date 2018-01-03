@@ -99,10 +99,14 @@ your store. Now pass the `myReducer` just like you would a function with a switc
 
 ```javascript
 import { createReducer } from 'ngrx-actions';
-export const myReducer = createReducer(MyStore);
+export const myReducer = function(state, action) { return createReducer(MyStore)(state, action); }
 ```
 
-then pass that to your NGRX module just like normal:
+In the above example, I return a function that returns my `createReducer`. This is because AoT
+complains stating `Function expressions are not supported in decorators` if we just assign
+the `createReducer` method directly. This is a known issue and [other NGRX](https://github.com/ngrx/platform/issues/116) things suffer from it too.
+
+Next, pass that to your NGRX module just like normal:
 
 ```javascript
 @NgModule({
@@ -166,3 +170,5 @@ And you can start using it in any component. It also works with feature stores t
 - _What about composition?_ Well since it creates a normal reducer function, you can still use all the same composition fns you already use.
 - _Will this work with normal Redux?_ While its designed for Angular and NGRX it would work perfectly fine for normal Redux. If that gets requested, I'll be happy to add better support too.
 - _Do I have to rewrite my entire app to use this?_ No, you can use this in combination with the tranditional switch statements or whatever you are currently doing.
+- _Does it support AoT?_ Yes but see above example for details on implementation.
+- _Does this work with NGRX Dev Tools?_ Yes, it does.
