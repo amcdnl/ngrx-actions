@@ -143,3 +143,4 @@ export class MyEffects {
 - _Will this work with normal Redux?_ While its designed for Angular and NGRX it would work perfectly fine for normal Redux. If that gets requested, I'll be happy to add better support too.
 - _Do I have to rewrite my entire app to use this?_ No, you can use this in combination with the tranditional switch statements or whatever you are currently doing.
 - _Does it support AoT?_ Yes but see above example for details on implementation.
+- _Does this work with NGRX Dev Tools?_ Yes, it does.
