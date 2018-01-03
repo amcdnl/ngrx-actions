@@ -1,3 +1,6 @@
+# 1.1.2 - 1/3/17
+- Fix: Effects with normal objects
+
 # 1.1.1 - 1/3/17
 - Fix: NPM publish issue
 

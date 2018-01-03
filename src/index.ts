@@ -53,10 +53,14 @@ export function createReducer(klass: any) {
 }
 
 export function ofAction < T extends Action > (...allowedTypes: any[]) {
-  return function ofTypeOperator(source$: Actions < T > ): Actions < T > {
+  return function ofTypeOperator(source$: Actions <T>): Actions < T > {
     return filter.call(source$, (action: any) => {
-      const inst = new action();
-      return allowedTypes.some(type => type.type === inst.type);
+      let type = action.type;
+      if (action.constructor) {
+        let inst = new action();
+        type = inst.type;
+      }
+      return allowedTypes.some(a => a.type === type);
     });
   };
 }
