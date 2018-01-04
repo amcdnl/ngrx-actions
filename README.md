@@ -40,7 +40,7 @@ export class MyAction implements Action {
 }
 ```
 
-then you create a class a decorate it with a `Store` decorator that contains
+then you create a class and decorate it with a `Store` decorator that contains
 the initial state for your reducer. Within that class you define methods
 decorated with the `Action` decorator with an argument of the action class
 you want to match it on.
