@@ -6,7 +6,6 @@ Actions/reducer utility for NGRX. It provides a handful of functions to make NGR
 - `@Action(...MyActionClass: Action[])`: Decorator for a action function.
 - `ofAction(MyActionClass)`: Lettable operator for NGRX Effects
 - `createReducer(MyStoreClass)`: Reducer bootstrap function
-- `ngrxSelect(myStoreInstance)`: Select connector
 - `@Select('my.prop')`: Select decorator
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
