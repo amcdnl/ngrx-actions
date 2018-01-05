@@ -1,3 +1,6 @@
+# Master
+- Feature: Implied select name from property name
+
 # 1.2.0 - 1/3/17
 - Feature: Select decorator
 

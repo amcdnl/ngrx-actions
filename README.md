@@ -148,7 +148,8 @@ We didn't leave out selectors, there is a `Select` decorator that accepts a (dee
 ```javascript
 @Component({ ... })
 export class MyComponent {
-    @Select('my.prop.color') color$: Observable<string>;
+    @Select('my.prop.color') color$: Observable<string>; // deeply nested props
+    @Select() color: Observable<string>; // implied by name
 }
 ```
 
