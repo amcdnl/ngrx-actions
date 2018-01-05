@@ -8,12 +8,13 @@ const STORE_KEY = '$STORE';
 const ACTIONS_KEY = '$ACTIONS';
 
 export function Store(initialState: any = {}) {
-  return (target: any) =>
+  return function(target: any) {
     Reflect.defineMetadata(STORE_KEY, initialState, target);
+  }
 }
 
 export function Action(...klasses: any[]) {
-  return (target: any, name: string, descriptor: TypedPropertyDescriptor < any > ) => {
+  return function(target: any, name: string, descriptor: TypedPropertyDescriptor<any>) {
     const meta = Reflect.getMetadata(ACTIONS_KEY, target) || [];
     for (const klass of klasses) {
       const inst = new klass();
@@ -32,7 +33,7 @@ export function createReducer(klass: any) {
   const actions = Reflect.getMetadata(ACTIONS_KEY, klass.prototype);
   const instance = new klass();
 
-  return (state: any = initialState, action: any) => {
+  return function(state: any = initialState, action: any) {
     if (actions) {
       const meta = actions.find(a => a.type === action.type);
       if (meta) {
@@ -52,7 +53,7 @@ export function createReducer(klass: any) {
   };
 }
 
-export function ofAction <T extends Action> (...allowedTypes: any[]) {
+export function ofAction<T extends Action>(...allowedTypes: any[]) {
   return function ofTypeOperator(source$: Actions <T>): Actions <T> {
     return filter.call(source$, (action: any) => {
       return allowedTypes.some(a => {
