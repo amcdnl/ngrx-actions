@@ -18,7 +18,8 @@
     "target": "es5",
     "types": [
       "jasmine"
-    ]
+    ],
+    "outDir": "dist"
   },
   "include": [
     "src/**/*"

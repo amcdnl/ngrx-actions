@@ -1,11 +1,11 @@
 {
   "name": "ngrx-actions",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Actions and Reducer Utility Library for NGRX",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "test": "npm run build && jasmine **/*.spec.js"
+    "build": "ngc -p tsconfig.json",
+    "test": "npm run build && jasmine dist/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -24,18 +24,21 @@
     "url": "https://github.com/amcdnl/ngrx-actions/issues"
   },
   "homepage": "https://github.com/amcdnl/ngrx-actions#readme",
-  "dependencies": {},
   "peerDependencies": {
+    "@angular/core": "^5.1.3",
     "reflect-metadata": "^0.1.10",
     "@ngrx/effects": "^4.1.1",
     "@ngrx/store": "^4.1.1",
     "rxjs": "^5.5.6"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.6.0",
-    "jasmine": "^2.8.0",
+    "@angular/compiler": "^5.1.3",
+    "@angular/compiler-cli": "^5.1.3",
+    "@angular/core": "^5.1.3",
     "@ngrx/effects": "^4.1.1",
     "@ngrx/store": "^4.1.1",
+    "@types/jasmine": "^2.6.0",
+    "jasmine": "^2.8.0",
     "ngrx": "^2.0.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",

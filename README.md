@@ -156,11 +156,14 @@ export class MyComponent {
 This can help clean up your store selects. To hook it up, in the `AppModule` you do:
 
 ```javascript
-import { ngrxSelect } from 'ngrx-actions';
-@NgModule({ ... })
+import { NgrxActionsModule } from 'ngrx-actions';
+
+@NgModule({
+    imports: [NgrxActionsModule]
+})
 export class AppModule {
-    constructor(store: Store<MyState>) {
-        ngrxSelect(store);
+    constructor(ngrxSelect: NgrxSelect, store: Store<MyState>) {
+        ngrxSelect.connect(store);
     }
 }
 ```
