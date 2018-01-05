@@ -167,7 +167,7 @@ export class AppModule {
 }
 ```
 
-And you can start using it in any component. It also works with feature stores too. Don't forget when you are writing tests to invoke the `ngrxSelect` function in your test runner.
+And you can start using it in any component. It also works with feature stores too. Don't forget when you are writing tests to invoke the `connect` function in your test runner.
 
 ## Common Questions
 - _What about composition?_ Well since it creates a normal reducer function, you can still use all the same composition fns you already use.
