@@ -1,5 +1,8 @@
+# 2.0.1 - 1/7/17
+- Chore: Better builds
+
 # 2.0.0 - 1/5/17
-- Break: Add module for proper DI of selects
+- BREAKING: Add module for proper DI of selects
 - Feature: Implied select name from property name
 
 # 1.2.0 - 1/3/17

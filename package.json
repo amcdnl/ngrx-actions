@@ -1,11 +1,12 @@
 {
   "name": "ngrx-actions",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Actions and Reducer Utility Library for NGRX",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ngc -p tsconfig.json",
-    "test": "npm run build && jasmine dist/*.spec.js"
+    "build": "ng-packagr -p package.json",
+    "test": "ngc -p tsconfig.json && jasmine dist/*.spec.js",
+    "publish": "npm publish dist"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,12 @@
     "ngrx": "^2.0.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.5.6",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "ng-packagr": "^1.6.0"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/index.ts"
+    }
   }
 }
