@@ -14,7 +14,13 @@ export function Select(path?: string): any {
   return function (target: any, name: string, descriptor: TypedPropertyDescriptor <any>): void {
     if (delete target[name]) {
       Object.defineProperty(target, name, {
-        get: () => NgrxSelect.store.select(state => getValue(state, path || name)),
+        get: () => {
+          if (!NgrxSelect.store) {
+            throw new Error('NgrxSelect not connected to store!');
+          }
+      
+          return NgrxSelect.store.select(state => getValue(state, path || name))
+        },
         enumerable: true,
         configurable: true
       });

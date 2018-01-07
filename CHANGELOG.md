@@ -1,3 +1,6 @@
+# 2.0.2 - 1/7/17
+- Chore: Add error handling for select connect
+
 # 2.0.1 - 1/7/17
 - Chore: Better builds
 
