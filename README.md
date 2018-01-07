@@ -167,7 +167,7 @@ export class AppModule {
 }
 ```
 
-And you can start using it in any component. It also works with feature stores too. Don't forget when you are writing tests to invoke the `connect` function in your test runner.
+And you can start using it in any component. It also works with feature stores too. Don't forget when you are writing tests to invoke the `connect` function in your test runner. Note: The Select decorator has a limitation of lack of type checking due to [https://github.com/Microsoft/TypeScript/issues/4881][TypeScript#4881].
 
 ## Common Questions
 - _What about composition?_ Well since it creates a normal reducer function, you can still use all the same composition fns you already use.
