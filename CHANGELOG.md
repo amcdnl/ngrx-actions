@@ -1,3 +1,6 @@
+# 2.0.4 - 1/7/17
+- Feature: Memoize Select
+
 # 2.0.3 - 1/7/17
 - Fix: Build tweaks
 

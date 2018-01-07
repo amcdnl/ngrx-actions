@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { memoize } from './memoize';
 
 @Injectable()
 export class NgrxSelect {
@@ -19,7 +20,8 @@ export function Select(path?: string): any {
             throw new Error('NgrxSelect not connected to store!');
           }
       
-          return NgrxSelect.store.select(state => getValue(state, path || name))
+          const fn = memoize(state => getValue(state, path || name));
+          return NgrxSelect.store.select(fn);
         },
         enumerable: true,
         configurable: true
