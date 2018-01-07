@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class NgrxSelect {
-  static store: any;
+  static store: any = undefined;
   connect(store: Store<any>) {
     NgrxSelect.store = store;
   }
