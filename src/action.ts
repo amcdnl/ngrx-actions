@@ -12,7 +12,7 @@ export function Action(...klasses: any[]) {
       meta.push({
         action: klass,
         fn: name,
-        type: inst.type,
+        type: inst.type
       });
     }
     Reflect.defineMetadata(ACTIONS_KEY, meta, target);

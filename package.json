@@ -8,7 +8,7 @@
     "test": "ngc -p tsconfig.json && jasmine dist/*.spec.js",
     "publish": "npm publish dist",
     "precommit": "lint-staged",
-    "prettier": "prettier --parser typescript --single-quote --trailing-comma es5 --write \"**/*.ts\""
+    "prettier": "prettier --parser typescript --single-quote --write \"**/*.ts\""
   },
   "repository": {
     "type": "git",

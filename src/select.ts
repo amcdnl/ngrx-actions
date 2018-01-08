@@ -34,14 +34,16 @@ export function Select(
           return NgrxSelect.store.select(fn);
         },
         enumerable: true,
-        configurable: true,
+        configurable: true
       });
     }
   };
 }
 
 function getValue(state, prop) {
-  if (prop)
+  if (prop) {
     return prop.split('.').reduce((acc, part) => acc && acc[part], state);
+  }
+
   return state;
 }
