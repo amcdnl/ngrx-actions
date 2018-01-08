@@ -12,7 +12,7 @@ export function createReducer(klass: any) {
         const result = instance[meta.fn](state, action);
         if (result === undefined) {
           if (Array.isArray(state)) {
-            return [ ...state ];
+            return [...state];
           } else {
             return { ...state };
           }

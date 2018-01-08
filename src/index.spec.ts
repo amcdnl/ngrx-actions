@@ -3,7 +3,7 @@ import { Store, createReducer, Action } from './index';
 describe('actions', () => {
   it('adds defaults', () => {
     class MyAction {
-      readonly type = 'myaction'
+      readonly type = 'myaction';
     }
 
     @Store({ foo: true })
@@ -30,7 +30,7 @@ describe('actions', () => {
 
   it('finds correct action', () => {
     class MyAction {
-      readonly type = 'myaction'
+      readonly type = 'myaction';
     }
 
     @Store({ foo: true })
@@ -48,11 +48,11 @@ describe('actions', () => {
 
   it('supports multiple actions', () => {
     class MyAction {
-      readonly type = 'myaction'
+      readonly type = 'myaction';
     }
 
     class MyAction2 {
-      readonly type = 'myaction2'
+      readonly type = 'myaction2';
     }
 
     @Store({ foo: true })
@@ -70,7 +70,7 @@ describe('actions', () => {
 
   it('works with plain objects', () => {
     class MyAction {
-      readonly type = 'myaction'
+      readonly type = 'myaction';
     }
 
     @Store({ foo: true })
@@ -84,5 +84,5 @@ describe('actions', () => {
     const reducer = createReducer(Bar);
     const res = reducer(undefined, { type: 'myaction' });
     expect(res.foo).toBe(false);
-  })
+  });
 });

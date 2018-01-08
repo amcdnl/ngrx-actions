@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { MemoizedSelector, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { memoize } from './memoize';
 
@@ -11,26 +11,35 @@ export class NgrxSelect {
   }
 }
 
-export function Select(path?: string): any {
-  return function (target: any, name: string, descriptor: TypedPropertyDescriptor <any>): void {
+export function Select(selector?: string | MemoizedSelector<object, any>): any {
+  return function(
+    target: any,
+    name: string,
+    descriptor: TypedPropertyDescriptor<any>
+  ): void {
     if (delete target[name]) {
       Object.defineProperty(target, name, {
         get: () => {
           if (!NgrxSelect.store) {
             throw new Error('NgrxSelect not connected to store!');
           }
-      
-          const fn = memoize(state => getValue(state, path || name));
+
+          const fn =
+            typeof selector === 'string'
+              ? memoize(state => getValue(state, selector || name))
+              : selector;
+
           return NgrxSelect.store.select(fn);
         },
         enumerable: true,
-        configurable: true
+        configurable: true,
       });
     }
   };
 }
 
 function getValue(state, prop) {
-  if (prop) return prop.split('.').reduce((acc, part) => acc && acc[part], state);
+  if (prop)
+    return prop.split('.').reduce((acc, part) => acc && acc[part], state);
   return state;
 }
