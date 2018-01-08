@@ -25,7 +25,7 @@ export function Select(selector?: string | MemoizedSelector<object, any>): any {
           }
 
           const fn =
-            typeof selector === 'string'
+            typeof selector === 'string' || typeof selector === 'undefined'
               ? memoize(state => getValue(state, selector || name))
               : selector;
 
