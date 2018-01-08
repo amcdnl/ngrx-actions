@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { MemoizedSelector, Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 import { memoize } from './memoize';
 
 @Injectable()
 export class NgrxSelect {
   static store: any = undefined;
+
   connect(store: Store<any>) {
     NgrxSelect.store = store;
   }
 }
 
-export function Select(selector?: string | MemoizedSelector<object, any>): any {
+export function Select(
+  selector?: string | MemoizedSelector<object, any> | { (state: object): any }
+): any {
   return function(
     target: any,
     name: string,
