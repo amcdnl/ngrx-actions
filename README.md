@@ -176,3 +176,6 @@ And you can start using it in any component. It also works with feature stores t
 - _Does it support AoT?_ Yes but see above example for details on implementation.
 - _Does this work with NGRX Dev Tools?_ Yes, it does.
 - _How does it work with testing?_ Everything should work the same way but don't forget if you use the selector tool to include that in your test runner though.
+
+## Community
+- [Reducing Boilerplat with NGRX-ACTIONS](https://medium.com/@amcdnl/reducing-the-boilerplate-with-ngrx-actions-8de42a190aac)
