@@ -41,6 +41,7 @@
     "@ngrx/effects": "^4.1.1",
     "@ngrx/store": "^4.1.1",
     "@types/jasmine": "^2.8.0",
+    "husky": "^0.14.3",
     "jasmine": "^2.8.0",
     "lint-staged": "^6.0.0",
     "ng-packagr": "^2.0.0-rc.9",
