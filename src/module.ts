@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { NgrxSelect } from "./select";
+import { NgModule } from '@angular/core';
+import { NgrxSelect } from './select';
 
 @NgModule({
-  providers: [NgrxSelect]
+  providers: [NgrxSelect],
 })
 export class NgrxActionsModule {}
