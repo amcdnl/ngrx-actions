@@ -1,5 +1,6 @@
 import { ACTIONS_KEY } from './keys';
-import { ActionType, ActionsMeta } from './internals';
+import { ActionsMeta } from './internals';
+import { ActionType } from './symbols';
 
 export function Action(...actionsKlasses: ActionType[]) {
   return function(
