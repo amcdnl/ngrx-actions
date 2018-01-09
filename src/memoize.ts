@@ -8,5 +8,5 @@ export function memoize(func) {
     } else {
       return (memo[args] = func.apply(this, args));
     }
-  }
+  };
 }
