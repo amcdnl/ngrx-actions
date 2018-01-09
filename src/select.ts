@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MemoizedSelector, Store } from '@ngrx/store';
-import { memoize } from './memoize';
 
 @Injectable()
 export class NgrxSelect {
@@ -26,12 +25,14 @@ export function Select(
             throw new Error('NgrxSelect not connected to store!');
           }
 
-          const fn =
-            typeof selector === 'string' || typeof selector === 'undefined'
-              ? memoize(state => getValue(state, selector || name))
-              : selector;
+          if (typeof selector === 'function') {
+            return NgrxSelect.store.select(selector);
+          }
 
-          return NgrxSelect.store.select(fn);
+          if (typeof selector === 'string' || typeof selector === 'undefined') {
+            // If user want to memoize prop, just use createSelector approach
+            return NgrxSelect.store.select(...getValue(selector || name));
+          }
         },
         enumerable: true,
         configurable: true
@@ -40,10 +41,6 @@ export function Select(
   };
 }
 
-function getValue(state, prop) {
-  if (prop) {
-    return prop.split('.').reduce((acc, part) => acc && acc[part], state);
-  }
-
-  return state;
+function getValue(propPath: string) {
+  return propPath.split('.');
 }
