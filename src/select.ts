@@ -12,11 +12,7 @@ export class NgrxSelect {
 }
 
 export function Select(path?: string): any {
-  return function(
-    target: any,
-    name: string,
-    descriptor: TypedPropertyDescriptor<any>
-  ): void {
+  return function(target: any, name: string, descriptor: TypedPropertyDescriptor<any>): void {
     if (delete target[name]) {
       Object.defineProperty(target, name, {
         get: () => {
@@ -28,14 +24,15 @@ export function Select(path?: string): any {
           return NgrxSelect.store.select(fn);
         },
         enumerable: true,
-        configurable: true,
+        configurable: true
       });
     }
   };
 }
 
 function getValue(state, prop: string) {
-  if (prop)
+  if (prop) {
     return prop.split('.').reduce((acc, part) => acc && acc[part], state);
+  }
   return state;
 }

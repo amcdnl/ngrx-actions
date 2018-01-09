@@ -3,11 +3,7 @@ import { ActionsMeta } from './internals';
 import { ActionType } from './symbols';
 
 export function Action(...actionsKlasses: ActionType[]) {
-  return function(
-    target: any,
-    name: string,
-    descriptor: TypedPropertyDescriptor<any>
-  ) {
+  return function(target: any, name: string, descriptor: TypedPropertyDescriptor<any>) {
     let metas: ActionsMeta = Reflect.getMetadata(ACTIONS_KEY, target);
     if (!metas) {
       Reflect.defineMetadata(ACTIONS_KEY, (metas = {}), target);
@@ -17,7 +13,7 @@ export function Action(...actionsKlasses: ActionType[]) {
       metas[inst.type] = {
         action: klass,
         fn: name,
-        type: inst.type,
+        type: inst.type
       };
     }
   };
