@@ -1,3 +1,6 @@
+# 2.0.5 - 1/9/17
+- Fix: Performance Improvements #10
+
 # 2.0.4 - 1/7/17
 - Feature: Memoize Select
 
