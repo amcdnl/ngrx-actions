@@ -1,5 +1,5 @@
 import { Store, createReducer, Action, ofAction } from './index';
-import { of } from 'rxjs/Observable/of';
+import { of } from 'rxjs/observable/of';
 import { Action as NgRxAction } from '@ngrx/store';
 
 describe('actions', () => {
@@ -20,9 +20,9 @@ describe('actions', () => {
       }
     }
 
-    const reducer = createReducer<FooState>(Bar);
+    const reducer = createReducer<FooState | undefined>(Bar);
     const res = reducer(undefined, new MyAction());
-    expect(res.foo).toBe(true);
+    expect(res && res.foo).toBe(true);
   });
 
   it('adds defaults', () => {
@@ -133,7 +133,7 @@ describe('actions', () => {
 
     const action = new MyAction('foo');
     const actions = of<NgRxAction>(action, new MyAction2());
-    let tappedAction: NgRxAction;
+    let tappedAction: NgRxAction = { type: 'none' };
     actions.pipe(ofAction(MyAction)).subscribe(a => {
       tappedAction = a;
     });
