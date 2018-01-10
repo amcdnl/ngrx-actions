@@ -1,3 +1,6 @@
+# 2.0.6 - 1/10/17
+- Fix: Type issue #13
+
 # 2.0.5 - 1/9/17
 - Fix: Performance Improvements #10
 
