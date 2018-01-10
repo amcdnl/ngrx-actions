@@ -137,14 +137,23 @@ describe('actions', () => {
       readonly type = 'myaction2';
     }
 
-    const action = new MyAction('foo');
-    const actions = of<NgRxAction>(action, new MyAction2());
-    let tappedAction: NgRxAction;
-    actions.pipe(ofAction(MyAction)).subscribe(a => {
-      tappedAction = a;
+    class MyAction3 implements NgRxAction {
+      readonly type = 'myaction3';
+      constructor(public foo: any, public bar: any) {}
+    }
+
+    const action = new MyAction('foo'),
+      action2 = new MyAction2(),
+      action3 = new MyAction3('a', 0);
+    const actions = of<NgRxAction>(action, action2, action3);
+    let tappedActions: NgRxAction[] = [];
+    actions.pipe(ofAction<MyAction | MyAction2>(MyAction, MyAction2)).subscribe(a => {
+      tappedActions.push(a);
     });
 
-    expect(tappedAction).toBe(action);
+    expect(tappedActions.length).toEqual(2);
+    expect(tappedActions[0]).toBe(action);
+    expect(tappedActions[1]).toBe(action2);
   });
 
   it('selects sub state', () => {
