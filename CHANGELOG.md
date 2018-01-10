@@ -1,3 +1,6 @@
+# 2.0.7 - 1/10/17
+- Fix: Fix publish
+
 # 2.0.6 - 1/10/17
 - Fix: Type issue #13
 
