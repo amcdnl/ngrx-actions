@@ -1,3 +1,6 @@
+# 2.0.5 - 1/9/17
+- Fix: Performance Improvements #10
+
 # 2.0.4 - 1/7/17
 - Feature: Memoize Select
 
@@ -11,8 +14,37 @@
 - Chore: Better builds
 
 # 2.0.0 - 1/5/17
-- BREAKING: Add module for proper DI of selects
 - Feature: Implied select name from property name
+- BREAKING: Add module for proper DI of selects
+
+Instead of:
+```javascript
+import { ngrxSelect } from 'ngrx-actions';
+
+@NgModule({
+    imports: [NgrxActionsModule]
+})
+export class AppModule {
+    constructor(store: Store<MyState>) {
+        ngrxSelect(store);
+    }
+}
+```
+
+do this:
+
+```javascript
+import { NgrxActionsModule, NgrxSelect } from 'ngrx-actions';
+
+@NgModule({
+    imports: [NgrxActionsModule]
+})
+export class AppModule {
+    constructor(ngrxSelect: NgrxSelect, store: Store<MyState>) {
+        ngrxSelect.connect(store);
+    }
+}
+```
 
 # 1.2.0 - 1/3/17
 - Feature: Select decorator

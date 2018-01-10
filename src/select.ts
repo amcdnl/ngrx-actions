@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
 import { MemoizedSelector, Store } from '@ngrx/store';
+import { memoize } from './memoize';
 
 @Injectable()
 export class NgrxSelect {
-  static store: any = undefined;
-
+  static store: Store<any> = undefined;
   connect(store: Store<any>) {
     NgrxSelect.store = store;
   }
 }
 
-export function Select(
-  selector?: string | MemoizedSelector<object, any> | { (state: object): any }
-): any {
-  return function(
-    target: any,
-    name: string,
-    descriptor: TypedPropertyDescriptor<any>
-  ): void {
+export function Select(selector?: string | MemoizedSelector<object, any> | { (state: object): any }): any {
+  return function(target: any, name: string, descriptor: TypedPropertyDescriptor<any>): void {
     if (delete target[name]) {
       Object.defineProperty(target, name, {
         get: () => {
@@ -30,8 +24,8 @@ export function Select(
           }
 
           if (typeof selector === 'string' || typeof selector === 'undefined') {
-            // If user want to memoize prop, just use createSelector approach
-            return NgrxSelect.store.select(...getValue(selector || name));
+            const fn = memoize(state => getValue(state, selector || name));
+            return NgrxSelect.store.select(fn);
           }
         },
         enumerable: true,
@@ -41,6 +35,9 @@ export function Select(
   };
 }
 
-function getValue(propPath: string) {
-  return propPath.split('.');
+function getValue(state, prop: string) {
+  if (prop) {
+    return prop.split('.').reduce((acc, part) => acc && acc[part], state);
+  }
+  return state;
 }
