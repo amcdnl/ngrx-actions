@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export interface ActionMeta {
-  action: { new (): Action };
+  action: { new (...args: any[]): Action };
   fn: string;
   type: string;
 }
