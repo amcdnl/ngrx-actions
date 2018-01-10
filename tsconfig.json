@@ -14,6 +14,9 @@
     "rootDir": "src/",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "strict": true,
     "sourceMap": true,
     "target": "es5",
     "types": [
