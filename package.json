@@ -15,7 +15,13 @@
     "type": "git",
     "url": "git+https://amcdnl@github.com/amcdnl/ngrx-actions.git"
   },
-  "keywords": ["ngrx", "redux", "state", "store", "state-mangement"],
+  "keywords": [
+    "ngrx",
+    "redux",
+    "state",
+    "store",
+    "state-mangement"
+  ],
   "author": "Austin McDaniel",
   "license": "MIT",
   "bugs": {
@@ -45,7 +51,7 @@
     "rxjs": "^5.5.6",
     "tsickle": "^0.26.0",
     "tslint": "^5.8.0",
-    "typescript": "~2.5.3"
+    "typescript": "^2.6.2"
   },
   "ngPackage": {
     "lib": {
@@ -53,7 +59,10 @@
     }
   },
   "lint-staged": {
-    "*.ts": ["npm run prettier", "git add"]
+    "*.ts": [
+      "npm run prettier",
+      "git add"
+    ]
   },
   "prettier": {
     "singleQuote": true,
