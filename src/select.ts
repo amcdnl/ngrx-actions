@@ -28,12 +28,9 @@ export function Select<TState = any, TValue = any>(
     }
     // Handle string vs Selector<TState, TValue>
     if (typeof selectorOrFeature === 'string') {
-      let propsArray = [selectorOrFeature, ...paths];
-      if (!paths.length) {
-        propsArray = selectorOrFeature.split('.');
-      }
+      const propsArray = paths.length ? [selectorOrFeature, ...paths] : selectorOrFeature.split('.');
       fn = fastPropGetter(propsArray);
-    } else if (typeof selectorOrFeature === 'function') {
+    } else {
       fn = selectorOrFeature;
     }
     // Redefine property
