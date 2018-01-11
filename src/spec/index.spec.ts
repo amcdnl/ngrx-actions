@@ -157,7 +157,7 @@ describe('actions', () => {
   });
 
   it('selects sub state', () => {
-    const featureState: {
+    const globalState: {
       myFeature: FooState;
     } = {
       myFeature: {
@@ -183,7 +183,7 @@ describe('actions', () => {
       @Select(msBar) bar$: Observable<any>; // using MemoizedSelector
     }
 
-    const store = new NgRxStore(of(featureState), undefined, undefined);
+    const store = new NgRxStore(of(globalState), undefined, undefined);
 
     try {
       NgrxSelect.store = store;
@@ -195,11 +195,11 @@ describe('actions', () => {
       });
 
       mss.myFeature.subscribe(n => {
-        expect(n).toBe(featureState.myFeature);
+        expect(n).toBe(globalState.myFeature);
       });
 
       mss.bar$.subscribe(n => {
-        expect(n).toBe(featureState.myFeature.bar);
+        expect(n).toBe(globalState.myFeature.bar);
       });
     } finally {
       NgrxSelect.store = undefined;
