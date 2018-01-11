@@ -1,7 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Actions } from '@ngrx/effects';
 import { filter } from 'rxjs/operators';
-import { Observable } from 'rxjs/Observable';
 import { OperatorFunction } from 'rxjs/interfaces';
 import { ActionType } from '.';
 

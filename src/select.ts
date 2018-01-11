@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store, Selector } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class NgrxSelect {
-  static store: Store<any> = undefined;
+  static store: Store<any> | undefined = undefined;
   connect(store: Store<any>) {
     NgrxSelect.store = store;
   }
@@ -18,22 +17,23 @@ export function Select<TState = any, TValue = any>(
   ...paths: string[]
 ): (target: any, name: string) => void;
 export function Select<TState = any, TValue = any>(
-  selectorOrFeature: string | Selector<TState, TValue>,
+  selectorOrFeature?: string | Selector<TState, TValue>,
   ...paths: string[]
 ) {
   return function(target: any, name: string): void {
     let fn: Selector<TState, TValue>;
     // Nothing here? Use propery name as selector
-    if (typeof selectorOrFeature === 'undefined') {
+    if (!selectorOrFeature) {
       selectorOrFeature = name;
     }
     // Handle string vs Selector<TState, TValue>
     if (typeof selectorOrFeature === 'string') {
-      if (paths.length) {
-        selectorOrFeature = [selectorOrFeature, ...paths].join('.');
+      let propsArray = [selectorOrFeature, ...paths];
+      if (!paths.length) {
+        propsArray = selectorOrFeature.split('.');
       }
-      fn = fastPropGetter(selectorOrFeature);
-    } else {
+      fn = fastPropGetter(propsArray);
+    } else if (typeof selectorOrFeature === 'function') {
       fn = selectorOrFeature;
     }
     // Redefine property
@@ -55,21 +55,21 @@ export function Select<TState = any, TValue = any>(
 }
 
 /**
- * The generated function is faster then:
+ * The generated function is faster than:
  * - pluck (Observable operator)
  * - memoize (old ngrx-actions implementation)
  * - MemoizedSelector (ngrx)
  * @param path
  */
-function fastPropGetter(path: string): (x: any) => any {
-  const segments = path.split('.');
+export function fastPropGetter(paths: string[]): (x: any) => any {
+  const segments = paths;
   let seg = 'store.' + segments[0],
-    i = 0,
-    l = segments.length;
+    i = 0;
+  const l = segments.length;
   let expr = seg;
   while (++i < l) {
     expr = expr + ' && ' + (seg = seg + '.' + segments[i]);
   }
-  const fn = new Function('store', 'return ' + expr + '');
+  const fn = new Function('store', 'return ' + expr + ';');
   return <(x: any) => any>fn;
 }

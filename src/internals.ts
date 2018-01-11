@@ -1,4 +1,3 @@
-import { Action } from '@ngrx/store';
 import { ActionType } from './symbols';
 
 export interface ActionMeta {
