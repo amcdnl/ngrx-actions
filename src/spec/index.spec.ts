@@ -1,5 +1,5 @@
-import { Store, createReducer, Action, ofAction, Select, NgrxSelect } from './index';
-import { Action as NgRxAction, Store as NgRxStore, createFeatureSelector, createSelector } from '@ngrx/store';
+import { Store, createReducer, Action, ofAction, Select, NgrxSelect } from '../index';
+import { Action as NgRxAction, createFeatureSelector, createSelector, Store as NgRxStore } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
@@ -26,9 +26,9 @@ describe('actions', () => {
       }
     }
 
-    const reducer = createReducer<FooState>(Bar);
+    const reducer = createReducer<FooState | undefined>(Bar);
     const res = reducer(undefined, new MyAction());
-    expect(res.foo).toBe(true);
+    expect(res && res.foo).toBe(true);
   });
 
   it('adds defaults', () => {
@@ -146,7 +146,7 @@ describe('actions', () => {
       action2 = new MyAction2(),
       action3 = new MyAction3('a', 0);
     const actions = of<NgRxAction>(action, action2, action3);
-    let tappedActions: NgRxAction[] = [];
+    const tappedActions: NgRxAction[] = [];
     actions.pipe(ofAction<MyAction | MyAction2>(MyAction, MyAction2)).subscribe(a => {
       tappedActions.push(a);
     });
@@ -157,7 +157,7 @@ describe('actions', () => {
   });
 
   it('selects sub state', () => {
-    const state: {
+    const globalState: {
       myFeature: FooState;
     } = {
       myFeature: {
@@ -183,7 +183,7 @@ describe('actions', () => {
       @Select(msBar) bar$: Observable<any>; // using MemoizedSelector
     }
 
-    const store = new NgRxStore(of(state), undefined, undefined);
+    const store = new NgRxStore(of(globalState), undefined, undefined);
 
     try {
       NgrxSelect.store = store;
@@ -195,11 +195,11 @@ describe('actions', () => {
       });
 
       mss.myFeature.subscribe(n => {
-        expect(n).toBe(state.myFeature);
+        expect(n).toBe(globalState.myFeature);
       });
 
       mss.bar$.subscribe(n => {
-        expect(n).toBe(state.myFeature.bar);
+        expect(n).toBe(globalState.myFeature.bar);
       });
     } finally {
       NgrxSelect.store = undefined;
