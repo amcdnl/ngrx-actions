@@ -1,3 +1,3 @@
 import { Action } from '@ngrx/store';
 
-export type ActionType = { new (...args: any[]): Action };
+export type ActionType<T extends Action = Action> = { new (...args: any[]): T };

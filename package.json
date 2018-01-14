@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "ng-packagr -p package.json",
-    "test": "ngc -p tsconfig.json && jasmine dist/*.spec.js",
+    "test": "ngc -p tsconfig.spec.json && jasmine dist/spec/*.spec.js",
     "publish": "npm publish dist",
     "precommit": "lint-staged",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
@@ -51,7 +51,7 @@
     "rxjs": "^5.5.6",
     "tsickle": "^0.26.0",
     "tslint": "^5.8.0",
-    "typescript": "~2.5.3"
+    "typescript": "^2.6.2"
   },
   "ngPackage": {
     "lib": {

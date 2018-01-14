@@ -1,0 +1,4 @@
+/* This file is for IDE only */
+{
+    "extends": "../../tsconfig.spec.json"
+}
