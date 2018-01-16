@@ -1,2 +1,0 @@
-export const INITIAL_STATE_KEY = '$STORE_INITIAL_STATE';
-export const ACTIONS_KEY = '$ACTIONS';
