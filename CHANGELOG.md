@@ -1,3 +1,6 @@
+# 2.1.1 - 1/18/18
+- Fix: Remove need for reflect-metadata causing issues #18
+
 # 2.1.0 - 1/14/18
 - Feature: Add support for memoized selectors in `@Select` decorator
 - Feature: add support for `@Select('a', 'b', 'c')` in `@Select` decorator
