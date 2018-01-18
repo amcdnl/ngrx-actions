@@ -1,12 +1,14 @@
-import { INITIAL_STATE_KEY, ACTIONS_KEY } from './keys';
 import { Action } from '@ngrx/store';
-import { ActionsMeta } from './internals';
+import { NGRX_ACTIONS_META, StoreMetadata } from './internals';
 
 export function createReducer<TState = any>(store: {
   new (...args: any[]): any;
 }): (state: TState, action: Action) => TState {
-  const initialState = Reflect.getMetadata(INITIAL_STATE_KEY, store);
-  const actions: ActionsMeta = Reflect.getMetadata(ACTIONS_KEY, store.prototype) || {};
+  if (!store.hasOwnProperty(NGRX_ACTIONS_META)) {
+    throw new Error('A reducer can be created from a @Store decorated class only.');
+  }
+  const { initialState, actions } = store[NGRX_ACTIONS_META] as StoreMetadata;
+
   const instance = new store();
 
   return function(state: any = initialState, action: Action) {

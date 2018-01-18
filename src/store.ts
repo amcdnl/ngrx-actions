@@ -1,9 +1,10 @@
-import { INITIAL_STATE_KEY } from './keys';
+import { ensureStoreMetadata } from './internals';
 
 export function Store<TState>(initialState?: TState): (target: Function) => void;
 export function Store(initialState?: any): (target: Function) => void;
 export function Store(initialState: any = {}) {
   return function(target: Function) {
-    Reflect.defineMetadata(INITIAL_STATE_KEY, initialState, target);
+    const meta = ensureStoreMetadata(target);
+    meta.initialState = initialState;
   };
 }
