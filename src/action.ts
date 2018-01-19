@@ -7,6 +7,13 @@ export function Action(...actionsKlasses: ActionType[]) {
 
     for (const klass of actionsKlasses) {
       const inst = new klass();
+      if (meta.actions[inst.type]) {
+        throw new Error(
+          `@Action for '${inst.type}' is defined multiple times in functions '${
+            meta.actions[inst.type].fn
+          }' and '${name}'`
+        );
+      }
       meta.actions[inst.type] = {
         action: klass,
         fn: name,

@@ -109,6 +109,29 @@ describe('actions', () => {
     expect(res.foo).toBe(false);
   });
 
+  it('throws when defining multiple reducer for one action', () => {
+    class MyAction {
+      readonly type = '[my] myaction';
+    }
+
+    expect(() => {
+      @Store({ foo: true })
+      class Bar {
+        @Action(MyAction)
+        foo(state) {
+          state.foo = false;
+        }
+
+        @Action(MyAction)
+        bar(state) {
+          state.foo = true;
+        }
+      }
+
+      createReducer(Bar);
+    }).toThrowError(`@Action for '[my] myaction' is defined multiple times in functions 'foo' and 'bar'`);
+  });
+
   it('works with plain objects', () => {
     class MyAction {
       readonly type = 'myaction';
