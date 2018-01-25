@@ -1,3 +1,7 @@
+# 2.1.2 - 1/25/18
+- Chore: Bump peer deps for ngrx 5
+- Fix: Throws when defining multiple reducer for one action
+
 # 2.1.1 - 1/18/18
 - Fix: Remove need for reflect-metadata causing issues #18
 

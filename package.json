@@ -1,6 +1,6 @@
 {
   "name": "ngrx-actions",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Actions and Reducer Utility Library for NGRX",
   "main": "dist/index.js",
   "scripts": {
@@ -30,8 +30,8 @@
   "homepage": "https://github.com/amcdnl/ngrx-actions#readme",
   "peerDependencies": {
     "@angular/core": "^5.0.0",
-    "@ngrx/effects": "^4.1.1",
-    "@ngrx/store": "^4.1.1",
+    "@ngrx/effects": ">=4.1.1 || >5.0.0",
+    "@ngrx/store": ">=4.1.1 || >5.0.0",
     "rxjs": "^5.5.6"
   },
   "devDependencies": {
