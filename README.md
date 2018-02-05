@@ -98,7 +98,7 @@ your store. Now pass the `myReducer` just like you would a function with a switc
 
 ```javascript
 import { createReducer } from 'ngrx-actions';
-export const myReducer = function(state, action) { return createReducer(MyStore)(state, action); }
+export function myReducer(state, action) { return createReducer(MyStore)(state, action); }
 ```
 
 In the above example, I return a function that returns my `createReducer`. This is because AoT
