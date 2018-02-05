@@ -65,7 +65,7 @@ export class MyStore {
 
     @Action(Selection)
     selection(state: MyState, action: Selection) {
-        state.collection = [...action.payload];
+        state.selections = [...action.payload];
     }
 
     @Action(DeleteSuccess)
@@ -93,7 +93,7 @@ seen in the `deleteSuccess` action.
 Above you may notice, the first action has multiple action classes. Thats because
 the `@Action` decorator can accept single or multiple actions.
 
-To hook it up to NGRX, all you have to do is call `createReducer` function passing
+To hook it up to NGRX, all you have to do is call the `createReducer` function passing
 your store. Now pass the `myReducer` just like you would a function with a switch statement inside.
 
 ```javascript
