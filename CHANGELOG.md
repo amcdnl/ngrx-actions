@@ -1,3 +1,6 @@
+# 2.1.3 - 29/18
+- Feature: Reduce boilerplate for select connect
+
 # 2.1.2 - 1/25/18
 - Chore: Bump peer deps for ngrx 5
 - Fix: Throws when defining multiple reducer for one action

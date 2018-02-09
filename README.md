@@ -147,6 +147,7 @@ We didn't leave out selectors, there is a `Select` decorator that accepts a (dee
 ```javascript
 @Component({ ... })
 export class MyComponent {
+    @Select((state) => state.color) color$: Observable<string>; // functions
     @Select('my.prop.color') color$: Observable<string>; // deeply nested props
     @Select() color: Observable<string>; // implied by name
 }
@@ -155,19 +156,15 @@ export class MyComponent {
 This can help clean up your store selects. To hook it up, in the `AppModule` you do:
 
 ```javascript
-import { NgrxActionsModule, NgrxSelect } from 'ngrx-actions';
+import { NgrxActionsModule } from 'ngrx-actions';
 
 @NgModule({
     imports: [NgrxActionsModule]
 })
-export class AppModule {
-    constructor(ngrxSelect: NgrxSelect, store: Store<MyState>) {
-        ngrxSelect.connect(store);
-    }
-}
+export class AppModule {}
 ```
 
-And you can start using it in any component. It also works with feature stores too. Don't forget when you are writing tests to invoke the `connect` function in your test runner. Note: The Select decorator has a limitation of lack of type checking due to [TypeScript#4881](https://github.com/Microsoft/TypeScript/issues/4881).
+And you can start using it in any component. It also works with feature stores too. Note: The Select decorator has a limitation of lack of type checking due to [TypeScript#4881](https://github.com/Microsoft/TypeScript/issues/4881).
 
 ## Common Questions
 - _What about composition?_ Well since it creates a normal reducer function, you can still use all the same composition fns you already use.
