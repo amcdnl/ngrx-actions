@@ -1,4 +1,7 @@
-# 2.1.3 - 29/18
+# 2.2.0 - 2/11/18
+- Feature: `SelectMap` decorator
+
+# 2.1.3 - 2/9/18
 - Feature: Reduce boilerplate for select connect
 
 # 2.1.2 - 1/25/18

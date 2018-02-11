@@ -7,6 +7,7 @@ Actions/reducer utility for NGRX. It provides a handful of functions to make NGR
 - `ofAction(MyActionClass)`: Lettable operator for NGRX Effects
 - `createReducer(MyStoreClass)`: Reducer bootstrap function
 - `@Select('my.prop')`: Select decorator
+- `@SelectMap(state => 'foo')`: Select map decorator
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
@@ -147,9 +148,20 @@ We didn't leave out selectors, there is a `Select` decorator that accepts a (dee
 ```javascript
 @Component({ ... })
 export class MyComponent {
-    @Select((state) => state.color) color$: Observable<string>; // functions
-    @Select('my.prop.color') color$: Observable<string>; // deeply nested props
-    @Select() color: Observable<string>; // implied by name
+    // Functions
+    @Select((state) => state.color) color$: Observable<string>;
+
+    // Array of props
+    @Select(['my', 'prop', 'color']) color$: Observable<strinv>;
+
+    // Deeply nested properties
+    @Select('my.prop.color') color$: Observable<string>;
+
+    // Implied by the name of the member
+    @Select() color: Observable<string>;
+
+    // Remap the slice to a new object
+    @SelectMap(state => state.map(f => 'blue')) color$: Observable<string>;
 }
 ```
 
