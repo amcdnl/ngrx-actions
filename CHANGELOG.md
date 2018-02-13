@@ -1,5 +1,4 @@
 # 2.4.0 - 2/13/18
-- Feature: Make less boilerplate required
 - Refactor: Get rid of `SelectMap` and consolidate to `Select`
 - Perf: Improve `Select` perf by caching GET
 

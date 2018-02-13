@@ -34,9 +34,7 @@ Next, create an action just like you do with NGRX today:
 
 ```javascript
 export class MyAction {
-  // Type is optional. If not provided it will use the class name.
   readonly type = 'My Action';
-  
   constructor(public payload: MyObj) {}
 }
 ```
