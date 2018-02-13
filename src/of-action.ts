@@ -7,7 +7,7 @@ export function ofAction<T extends Action>(allowedType: ActionType<T>): Operator
 export function ofAction<T extends Action>(...allowedTypes: ActionType[]): OperatorFunction<Action, T>;
 export function ofAction(...allowedTypes: ActionType[]): OperatorFunction<Action, Action> {
   const allowedMap = {};
-  allowedTypes.forEach(klass => (allowedMap[new klass().type] = true));
+  allowedTypes.forEach(klass => (allowedMap[new klass().type || klass.name] = true));
   return filter((action: Action) => {
     return allowedMap[action.type];
   });

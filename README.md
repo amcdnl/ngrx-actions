@@ -7,7 +7,6 @@ Actions/reducer utility for NGRX. It provides a handful of functions to make NGR
 - `ofAction(MyActionClass)`: Lettable operator for NGRX Effects
 - `createReducer(MyStoreClass)`: Reducer bootstrap function
 - `@Select('my.prop')`: Select decorator
-- `@SelectMap(state => 'foo')`: Select map decorator
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
@@ -34,9 +33,11 @@ npm i ngrx-actions --S
 Next, create an action just like you do with NGRX today:
 
 ```javascript
-export class MyAction implements Action {
-   readonly type = 'My Action';
-   constructor(public payload: MyObj) {}
+export class MyAction {
+  // Type is optional. If not provided it will use the class name.
+  readonly type = 'My Action';
+  
+  constructor(public payload: MyObj) {}
 }
 ```
 
@@ -161,7 +162,7 @@ export class MyComponent {
     @Select() color: Observable<string>;
 
     // Remap the slice to a new object
-    @SelectMap(state => state.map(f => 'blue')) color$: Observable<string>;
+    @Select(state => state.map(f => 'blue')) color$: Observable<string>;
 }
 ```
 

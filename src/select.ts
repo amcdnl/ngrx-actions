@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store, Selector } from '@ngrx/store';
-import { map } from 'rxjs/operators/map';
 
 @Injectable()
 export class NgrxSelect {
@@ -39,37 +38,25 @@ export function Select<TState = any, TValue = any>(
     } else {
       fn = selectorOrFeature;
     }
-    // Redefine property
-    if (delete target[name]) {
-      Object.defineProperty(target, name, {
-        get: () => {
-          // get connected store
-          const store = NgrxSelect.store;
-          if (!store) {
-            throw new Error('NgrxSelect not connected to store!');
-          }
-          return store.select(fn);
-        },
-        enumerable: true,
-        configurable: true
-      });
-    }
-  };
-}
 
-/**
- * Slice a state portion of the state and then map it to a new object.
- */
-export function SelectMap<TState = any, TValue = any>(fn: Selector<TState, TValue>) {
-  return function(target: any, name: string) {
-    const store = NgrxSelect.store;
-    if (!store) {
-      throw new Error('NgrxSelect not connected to store!');
-    }
-    const select = store.select(state => state).pipe(map(fn));
+    const createSelect = () => {
+      const store = NgrxSelect.store;
+      if (!store) {
+        throw new Error('NgrxSelect not connected to store!');
+      }
+      return store.select(fn);
+    };
+
+    // Redefine property
+    let select;
     if (delete target[name]) {
       Object.defineProperty(target, name, {
-        get: () => select,
+        get: function() {
+          if (!select) {
+            select = createSelect();
+          }
+          return select;
+        },
         enumerable: true,
         configurable: true
       });

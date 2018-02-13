@@ -69,6 +69,8 @@ describe('actions', () => {
       readonly type = 'myaction2';
     }
 
+    class MyAction3 {}
+
     @Store({ foo: true })
     class Bar {
       @Action(MyAction2)
@@ -80,11 +82,19 @@ describe('actions', () => {
       foo(state) {
         state.foo = false;
       }
+
+      @Action(MyAction3)
+      foo2(state) {
+        state.foo = true;
+      }
     }
 
     const reducer = createReducer(Bar);
     const res = reducer(undefined, new MyAction());
     expect(res.foo).toBe(false);
+
+    const res2 = reducer(undefined, new MyAction3());
+    expect(res2.foo).toBe(true);
   });
 
   it('supports multiple actions', () => {
@@ -165,9 +175,9 @@ describe('actions', () => {
       constructor(public foo: any, public bar: any) {}
     }
 
-    const action = new MyAction('foo'),
-      action2 = new MyAction2(),
-      action3 = new MyAction3('a', 0);
+    const action = new MyAction('foo');
+    const action2 = new MyAction2();
+    const action3 = new MyAction3('a', 0);
     const actions = of<NgRxAction>(action, action2, action3);
     const tappedActions: NgRxAction[] = [];
     actions.pipe(ofAction<MyAction | MyAction2>(MyAction, MyAction2)).subscribe(a => {
@@ -204,6 +214,8 @@ describe('actions', () => {
       @Select('myFeature.bar.a.b.c.d') hello$: Observable<string>; // deeply nested props
       @Select() myFeature: Observable<FooState>; // implied by name
       @Select(msBar) bar$: Observable<any>; // using MemoizedSelector
+      @Select(state => [])
+      bar2$: Observable<any[]>; // Remapping to different obj
     }
 
     const store = new NgRxStore(of(globalState), undefined, undefined);
@@ -219,6 +231,10 @@ describe('actions', () => {
 
       mss.myFeature.subscribe(n => {
         expect(n).toBe(globalState.myFeature);
+      });
+
+      mss.bar2$.subscribe(n => {
+        expect(n.length).toBe(0);
       });
 
       mss.bar$.subscribe(n => {
