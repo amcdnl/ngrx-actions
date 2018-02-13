@@ -189,3 +189,4 @@ And you can start using it in any component. It also works with feature stores t
 
 ## Community
 - [Reducing Boilerplate with NGRX-ACTIONS](https://medium.com/@amcdnl/reducing-the-boilerplate-with-ngrx-actions-8de42a190aac)
+- [Adventures in Angular: NGRX Boilerplate](https://devchat.tv/adv-in-angular/aia-174-reducing-boilerplate-redux-ngrx-patterns-angular-austin-mcdaniel)
