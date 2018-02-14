@@ -48,15 +48,9 @@ export function Select<TState = any, TValue = any>(
     };
 
     // Redefine property
-    let select;
     if (delete target[name]) {
       Object.defineProperty(target, name, {
-        get: function() {
-          if (!select) {
-            select = createSelect();
-          }
-          return select;
-        },
+        get: createSelect,
         enumerable: true,
         configurable: true
       });
