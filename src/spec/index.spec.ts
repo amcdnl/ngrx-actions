@@ -69,8 +69,6 @@ describe('actions', () => {
       readonly type = 'myaction2';
     }
 
-    class MyAction3 {}
-
     @Store({ foo: true })
     class Bar {
       @Action(MyAction2)
@@ -82,19 +80,11 @@ describe('actions', () => {
       foo(state) {
         state.foo = false;
       }
-
-      @Action(MyAction3)
-      foo2(state) {
-        state.foo = true;
-      }
     }
 
     const reducer = createReducer(Bar);
     const res = reducer(undefined, new MyAction());
     expect(res.foo).toBe(false);
-
-    const res2 = reducer(undefined, new MyAction3());
-    expect(res2.foo).toBe(true);
   });
 
   it('supports multiple actions', () => {

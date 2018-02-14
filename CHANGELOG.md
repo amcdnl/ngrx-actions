@@ -1,4 +1,8 @@
-# 2.4.1 - 2/13/18
+# 2.4.2 - 2/14/18
+- Per: Improve `Select` perf by caching get
+- Revert: Revert `prototype.name` attempts since ngrx won't support it
+
+# 2.4.1 - 2/14/18
 - Bug: Revert 2.4.0 Select perf due to critical bugs w/ caching
 
 # 2.4.0 - 2/13/18

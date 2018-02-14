@@ -26,6 +26,7 @@ export function Select<TState = any, TValue = any>(
   ...paths: string[]
 ) {
   return function(target: any, name: string): void {
+    const selectorFnName = '__' + name + '__selector';
     let fn: Selector<TState, TValue>;
     // Nothing here? Use propery name as selector
     if (!selectorOrFeature) {
@@ -47,10 +48,22 @@ export function Select<TState = any, TValue = any>(
       return store.select(fn);
     };
 
+    if (target[selectorFnName]) {
+      throw new Error('You cannot use @Select decorator and a ' + selectorFnName + ' property.');
+    }
+
     // Redefine property
     if (delete target[name]) {
+      Object.defineProperty(target, selectorFnName, {
+        writable: true,
+        enumerable: false,
+        configurable: true
+      });
+
       Object.defineProperty(target, name, {
-        get: createSelect,
+        get: function() {
+          return this[selectorFnName] || (this[selectorFnName] = createSelect.apply(this));
+        },
         enumerable: true,
         configurable: true
       });

@@ -7,7 +7,7 @@ export function Action(...actionsKlasses: ActionType[]) {
 
     for (const klass of actionsKlasses) {
       const inst = new klass();
-      const type = inst.type || klass.name;
+      const type = inst.type;
 
       if (meta.actions[type]) {
         throw new Error(
