@@ -1,4 +1,4 @@
-# NGRX Actions [![Maintainability](https://api.codeclimate.com/v1/badges/6ad151ec2c2ab1983809/maintainability)](https://codeclimate.com/repos/5a5b8ba063a7d202aa000af5/maintainability)
+# NGRX Actions
 
 Actions/reducer utility for NGRX. It provides a handful of functions to make NGRX/Redux more Angular-tastic.
 
