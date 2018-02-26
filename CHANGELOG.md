@@ -1,3 +1,6 @@
+# 3.1.0 - 2/26/18
+- Feature: Seperate Actions from Effects.
+
 # 3.0.2 - 2/26/18
 - Fix: Aot error with forFeature method
 

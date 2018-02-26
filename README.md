@@ -4,6 +4,7 @@ Actions/reducer utility for NGRX. It provides a handful of functions to make NGR
 
 - `@Store(MyInitialState)`: Decorator for default state of a store.
 - `@Action(...MyActionClass: Action[])`: Decorator for a action function.
+- `@Effect(...MyActionClass: Action[])`: Decorator for a effect function.
 - `ofAction(MyActionClass)`: Lettable operator for NGRX Effects
 - `createReducer(MyStoreClass)`: Reducer bootstrap function
 - `@Select('my.prop')`: Select decorator
@@ -156,6 +157,28 @@ export class MyEffects {
     );
 }
 ```
+
+In 3.x, we introduced a new decorator called `@Effect` that you can define in your store
+to perform async operations.
+
+```javascript
+@Store({ delievered: false })
+export class PizzaStore {
+    constructor(private pizzaService: PizzaService) {}
+
+    @Action(DelieverPizza)
+    delieverPizza(state) {
+        state.delievered = false;
+    }
+
+    @Effect(DelieverPizza)
+    delieverPizzaToCustomer(state, { payload }: DelieverPizza) {
+        this.pizzaService.deliever(payload);
+    }
+}
+```
+
+Effects are always ran after actions.
 
 ### Selects
 We didn't leave out selectors, there is a `Select` decorator that accepts a (deep) path string. This looks like:
