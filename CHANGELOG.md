@@ -1,3 +1,16 @@
+# 3.0.0 - 2/26/18
+- Feature: Added ability to use DI with Stores
+
+Example:
+```
+@NgModule({
+    imports: [
+        NgrxActionsModule.forRoot({ pizza: MyStore })
+    ]
+    providers: [MyStore]
+})
+```
+
 # 2.4.2 - 2/14/18
 - Per: Improve `Select` perf by caching get
 - Revert: Revert `prototype.name` attempts since ngrx won't support it

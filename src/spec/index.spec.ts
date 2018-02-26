@@ -31,6 +31,24 @@ describe('actions', () => {
     expect(res && res.foo).toBe(true);
   });
 
+  it('createReducer works with instance', () => {
+    class MyAction {
+      readonly type = 'myaction';
+    }
+
+    @Store<FooState>({ foo: true })
+    class Bar {
+      @Action(MyAction)
+      foo(state: FooState, action: MyAction) {
+        return state;
+      }
+    }
+
+    const reducer = createReducer(new Bar());
+    const res = reducer(undefined, new MyAction());
+    expect(res && res.foo).toBe(true);
+  });
+
   it('adds defaults', () => {
     class MyAction {
       readonly type = 'myaction';

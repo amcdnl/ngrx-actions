@@ -1,6 +1,6 @@
 {
   "name": "ngrx-actions",
-  "version": "2.4.2",
+  "version": "3.0.0",
   "description": "Actions and Reducer Utility Library for NGRX",
   "main": "dist/index.js",
   "scripts": {

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": "tsconfig",
     "lib": [
-      "es6"
+      "es2015",
+      "DOM"
     ],
     "module": "commonjs",
     "moduleResolution": "node",

@@ -111,9 +111,25 @@ Next, pass that to your NGRX module just like normal:
 @NgModule({
    imports: [
       StoreModule.forRoot({
-         myReducer
+         pizza: pizzaReducer
       })
    ]
+})
+export class AppModule {}
+```
+
+Optionally you can also provide your store directly to the `NgrxActionsModule` and it will handle
+creating the reducer for you and also enables the ability to use DI with your stores. So rather than
+describing in `forRoot` or `forFeature` with `StoreModule`, we call them on `NgrxActionsModule`.
+
+```javascript
+@NgModule({
+   imports: [
+      NgrxActionsModule.forRoot({
+         pizza: PizzaStore
+      })
+   ],
+   providers: [PizzaStore]
 })
 export class AppModule {}
 ```

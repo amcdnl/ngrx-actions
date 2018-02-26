@@ -1,12 +1,79 @@
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken, ModuleWithProviders, Injector, Inject, Optional } from '@angular/core';
 import { NgrxSelect } from './select';
-import { Store } from '@ngrx/store';
+import { Store, StoreModule, ReducerManager, combineReducers } from '@ngrx/store';
+import { createReducer } from './factory';
+
+export const STORE_TOKEN = new InjectionToken<any>('STORE_TOKEN');
+export const FEATURE_STORE_TOKEN = new InjectionToken<any>('FEATURE_STORE_TOKEN');
 
 @NgModule({
+  imports: [StoreModule],
   providers: [NgrxSelect]
 })
 export class NgrxActionsModule {
-  constructor(store: Store<any>, select: NgrxSelect) {
+  static forRoot(reducers: any): ModuleWithProviders {
+    return {
+      ngModule: NgrxActionsModule,
+      providers: [
+        {
+          provide: STORE_TOKEN,
+          useValue: reducers
+        }
+      ]
+    };
+  }
+
+  static forFeature(key: any, reducers?: any): ModuleWithProviders {
+    if (typeof key !== 'string') {
+      reducers = key;
+      key = undefined;
+    }
+    return {
+      ngModule: NgrxActionsModule,
+      providers: [
+        {
+          provide: FEATURE_STORE_TOKEN,
+          useValue: { key, reducers }
+        }
+      ]
+    };
+  }
+
+  constructor(
+    @Inject(STORE_TOKEN) reducers: any,
+    @Optional()
+    @Inject(FEATURE_STORE_TOKEN)
+    featureReducers: any,
+    reducerFactory: ReducerManager,
+    store: Store<any>,
+    parentInjector: Injector,
+    select: NgrxSelect
+  ) {
     select.connect(store);
+
+    if (reducers) {
+      for (const key in reducers) {
+        const klass = reducers[key];
+        const inst = parentInjector.get(klass);
+        reducerFactory.addReducer(key, createReducer(inst));
+      }
+    }
+
+    if (featureReducers) {
+      const mapped = {};
+      for (const key in featureReducers.reducers) {
+        const klass = featureReducers.reducers[key];
+        const inst = parentInjector.get(klass);
+        mapped[key] = createReducer(inst);
+      }
+
+      if (featureReducers.key) {
+        reducerFactory.addFeature({
+          reducers: mapped,
+          reducerFactory: <any>combineReducers,
+          key: featureReducers.key
+        });
+      }
+    }
   }
 }
