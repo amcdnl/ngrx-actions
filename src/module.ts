@@ -40,7 +40,9 @@ export class NgrxActionsModule {
   }
 
   constructor(
-    @Inject(STORE_TOKEN) reducers: any,
+    @Optional()
+    @Inject(STORE_TOKEN)
+    reducers: any,
     @Optional()
     @Inject(FEATURE_STORE_TOKEN)
     featureReducers: any,

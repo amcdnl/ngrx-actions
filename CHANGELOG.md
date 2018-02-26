@@ -1,3 +1,6 @@
+# 3.0.1 - 2/26/18
+- Fix: Tokens undefined when not providing `forRoot`
+
 # 3.0.0 - 2/26/18
 - Feature: Added ability to use DI with Stores
 
