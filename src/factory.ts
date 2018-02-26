@@ -16,12 +16,12 @@ export function createReducer<TState = any>(
   }
 
   const instance = isInstance ? store : new store();
-  const { initialState, actions } = klass[NGRX_ACTIONS_META] as StoreMetadata;
+  const { initialState, actions, effects } = klass[NGRX_ACTIONS_META] as StoreMetadata;
 
   return function(state: any = initialState, action: Action) {
-    const meta = actions[action.type || action.constructor.name];
-    if (meta) {
-      const result = instance[meta.fn](state, action);
+    const actionMeta = actions[action.type];
+    if (actionMeta) {
+      const result = instance[actionMeta.fn](state, action);
       if (result === undefined) {
         if (Array.isArray(state)) {
           return [...state];
@@ -29,8 +29,14 @@ export function createReducer<TState = any>(
           return { ...state };
         }
       }
-      return result;
+      state = result;
     }
+
+    const effectMeta = effects[action.type];
+    if (effectMeta) {
+      instance[effectMeta.fn](state, action);
+    }
+
     return state;
   };
 }
