@@ -1,3 +1,6 @@
+# 3.0.2 - 2/26/18
+- Fix: Aot error with forFeature method
+
 # 3.0.1 - 2/26/18
 - Fix: Tokens undefined when not providing `forRoot`
 

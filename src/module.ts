@@ -24,10 +24,6 @@ export class NgrxActionsModule {
   }
 
   static forFeature(key: any, reducers?: any): ModuleWithProviders {
-    if (typeof key !== 'string') {
-      reducers = key;
-      key = undefined;
-    }
     return {
       ngModule: NgrxActionsModule,
       providers: [
@@ -62,6 +58,11 @@ export class NgrxActionsModule {
     }
 
     if (featureReducers) {
+      if (typeof featureReducers.key !== 'string') {
+        featureReducers.reducers = featureReducers.key;
+        featureReducers.key = undefined;
+      }
+
       const mapped = {};
       for (const key in featureReducers.reducers) {
         const klass = featureReducers.reducers[key];
