@@ -1,3 +1,6 @@
+# 3.1.2 - 2/27/18
+- Feature: Effects dispatch and subscribe if you return them in effects
+
 # 3.1.1 - 2/27/18
 - Feature: Handle non-resolved providers with new klass
 
