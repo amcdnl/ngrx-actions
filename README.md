@@ -166,19 +166,19 @@ to perform async operations.
 export class PizzaStore {
     constructor(private pizzaService: PizzaService) {}
 
-    @Action(DelieverPizza)
-    delieverPizza(state) {
-        state.delievered = false;
+    @Action(DeliverPizza)
+    deliverPizza(state) {
+        state.delivered = false;
     }
 
-    @Effect(DelieverPizza)
-    delieverPizzaToCustomer(state, { payload }: DelieverPizza) {
-        this.pizzaService.deliever(payload);
+    @Effect(DeliverPizza)
+    deliverPizzaToCustomer(state, { payload }: DeliverPizza) {
+        this.pizzaService.deliver(payload);
     }
 }
 ```
 
-Effects are always ran after actions.
+Effects are always run after actions.
 
 ### Selects
 We didn't leave out selectors, there is a `Select` decorator that accepts a (deep) path string. This looks like:
