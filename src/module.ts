@@ -52,7 +52,7 @@ export class NgrxActionsModule {
     if (reducers) {
       for (const key in reducers) {
         const klass = reducers[key];
-        const inst = parentInjector.get(klass);
+        const inst = parentInjector.get(klass, new klass());
         reducerFactory.addReducer(key, createReducer(inst));
       }
     }
@@ -66,7 +66,7 @@ export class NgrxActionsModule {
       const mapped = {};
       for (const key in featureReducers.reducers) {
         const klass = featureReducers.reducers[key];
-        const inst = parentInjector.get(klass);
+        const inst = parentInjector.get(klass, new klass());
         mapped[key] = createReducer(inst);
       }
 

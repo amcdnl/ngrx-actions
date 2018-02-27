@@ -1,3 +1,6 @@
+# 3.1.1 - 2/27/18
+- Feature: Handle non-resolved providers with new klass
+
 # 3.1.0 - 2/26/18
 - Feature: Seperate Actions from Effects.
 
