@@ -36,14 +36,18 @@ export function createReducer<TState = any>(
     const effectMeta = effects[action.type];
     if (effectMeta) {
       const retVal = instance[effectMeta.fn](state, action);
-      if (retVal && retVal.subscribe) {
-        retVal.subscribe(res => {
-          if (Array.isArray(res)) {
-            res.forEach(r => NgrxSelect.store && NgrxSelect.store.dispatch(r));
-          } else {
-            NgrxSelect.store && NgrxSelect.store.dispatch(res);
-          }
-        });
+      if (retVal) {
+        if (retVal.subscribe) {
+          retVal.subscribe(res => {
+            if (Array.isArray(res)) {
+              res.forEach(r => NgrxSelect.store && NgrxSelect.store.dispatch(r));
+            } else if (NgrxSelect.store) {
+              NgrxSelect.store.dispatch(res);
+            }
+          });
+        } else if (NgrxSelect.store) {
+          NgrxSelect.store.dispatch(retVal);
+        }
       }
     }
 

@@ -1,3 +1,6 @@
+# 3.1.3 - 2/27/18
+- Feature: Effects can return plain objects and dispatch
+
 # 3.1.2 - 2/27/18
 - Feature: Effects dispatch and subscribe if you return them in effects
 
