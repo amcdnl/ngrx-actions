@@ -46,7 +46,11 @@ export function createReducer<TState = any>(
             }
           });
         } else if (NgrxSelect.store) {
-          NgrxSelect.store.dispatch(retVal);
+          if (Array.isArray(retVal)) {
+            retVal.forEach(r => NgrxSelect.store && NgrxSelect.store.dispatch(r));
+          } else {
+            NgrxSelect.store.dispatch(retVal);
+          }
         }
       }
     }

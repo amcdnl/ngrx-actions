@@ -1,3 +1,6 @@
+# 3.1.4 - 2/27/18
+- Feature: Effects can return array objects
+
 # 3.1.3 - 2/27/18
 - Feature: Effects can return plain objects and dispatch
 
