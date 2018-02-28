@@ -1,3 +1,6 @@
+# 3.1.6 - 2/27/18
+- Fix: Effects materialize vs take
+
 # 3.1.5 - 2/27/18
 - Fix: Effects not unsubscribing
 
