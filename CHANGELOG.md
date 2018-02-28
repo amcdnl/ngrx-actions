@@ -1,3 +1,6 @@
+# 3.1.5 - 2/27/18
+- Fix: Effects not unsubscribing
+
 # 3.1.4 - 2/27/18
 - Feature: Effects can return array objects
 

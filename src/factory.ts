@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { NGRX_ACTIONS_META, StoreMetadata } from './internals';
 import { NgrxSelect } from './select';
+import { take } from 'rxjs/operators';
 
 export function createReducer<TState = any>(
   store:
@@ -38,7 +39,7 @@ export function createReducer<TState = any>(
       const retVal = instance[effectMeta.fn](state, action);
       if (retVal) {
         if (retVal.subscribe) {
-          retVal.subscribe(res => {
+          retVal.pipe(take(1)).subscribe(res => {
             if (Array.isArray(res)) {
               res.forEach(r => NgrxSelect.store && NgrxSelect.store.dispatch(r));
             } else if (NgrxSelect.store) {
