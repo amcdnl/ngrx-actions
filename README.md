@@ -11,6 +11,8 @@ Actions/reducer utility for NGRX. It provides a handful of functions to make NGR
 
 Inspired by [redux-act](https://github.com/pauldijou/redux-act) and [redux-actions](https://github.com/reduxactions/redux-actions) for Redux.
 
+If you like this, I recommend checking out my latest library called [NGXS](https://github.com/amcdnl/ngxs).
+
 See [changelog](CHANGELOG.md) for latest changes.
 
 ## Whats this for?
