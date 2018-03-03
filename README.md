@@ -84,10 +84,13 @@ export class MyStore {
 }
 ```
 
-You may notice, I don't return the state. Thats because if it doesn't see
-a state returned from the action it inspects whether the state was an
-object or array and automatically creates a new instance for you. If you are
-mutating deeply nested properties, you still need to deal with those yourself.
+You may notice, I don't always return the state. That's because if you're relying on the library
+to create your reducer (using `createReducer` - more on that below), it would inspect
+whether the state was an object or an array, automatically create a new state instance 
+for you and pass it to the function with @Action decorator. So you're not modifying an
+existing state in the function, which would be a bad practice - instead you're operating
+on a reference to a newly created instance of the state, which is then passed down the
+ngrx pipeline for you, behind the scenes.
 
 You can still return the state yourself and it won't mess with it. This is helpful
 for if the state didn't change or you have some complex logic going on. This can be
