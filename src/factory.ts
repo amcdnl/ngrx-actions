@@ -28,7 +28,7 @@ export function createReducer<TState = any>(
       if (result === undefined) {
         result = newStateInstance;
       }
-      store = result;
+      state = result;
     }
 
     const effectMeta = effects[action.type];
