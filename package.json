@@ -15,7 +15,13 @@
     "type": "git",
     "url": "git+https://amcdnl@github.com/amcdnl/ngrx-actions.git"
   },
-  "keywords": ["ngrx", "redux", "state", "store", "state-mangement"],
+  "keywords": [
+    "ngrx",
+    "redux",
+    "state",
+    "store",
+    "state-mangement"
+  ],
   "author": "Austin McDaniel",
   "license": "MIT",
   "bugs": {
@@ -54,14 +60,14 @@
     }
   },
   "lint-staged": {
-    "*.ts": ["npm run prettier", "git add"]
+    "*.ts": [
+      "npm run prettier",
+      "git add"
+    ]
   },
   "prettier": {
     "singleQuote": true,
     "printWidth": 120,
     "tabWidth": 2
-  },
-  "dependencies": {
-    "rxjs-compat": "^6.1.0"
   }
 }
