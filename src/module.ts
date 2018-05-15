@@ -1,6 +1,7 @@
 import { NgModule, InjectionToken, ModuleWithProviders, Injector, Inject, Optional } from '@angular/core';
-import { NgrxSelect } from './select';
 import { Store, StoreModule, ReducerManager, combineReducers } from '@ngrx/store';
+
+import { NgrxSelect } from './select';
 import { createReducer } from './factory';
 
 export const STORE_TOKEN = new InjectionToken<any>('STORE_TOKEN');

@@ -1,7 +1,7 @@
-import { Store, createReducer, Action, ofAction, Select, NgrxSelect } from '../index';
 import { Action as NgRxAction, createFeatureSelector, createSelector, Store as NgRxStore } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
+
+import { Store, createReducer, Action, ofAction, Select, NgrxSelect } from '../index';
 
 describe('actions', () => {
   interface FooState {

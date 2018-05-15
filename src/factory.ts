@@ -1,7 +1,8 @@
 import { Action } from '@ngrx/store';
+import { materialize } from 'rxjs/operators';
+
 import { NGRX_ACTIONS_META, StoreMetadata } from './internals';
 import { NgrxSelect } from './select';
-import { take, materialize } from 'rxjs/operators';
 
 export function createReducer<TState = any>(
   store:
