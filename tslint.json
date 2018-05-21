@@ -10,7 +10,9 @@
     "eofline": true,
     "import-blacklist": [
       true,
-      "rxjs"
+      "rxjs/Rx",
+      "rxjs/observable/*",
+      "rxjs/operators/*"
     ],
     "import-spacing": true,
     "indent": [
