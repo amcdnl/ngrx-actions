@@ -30,8 +30,8 @@
   "homepage": "https://github.com/amcdnl/ngrx-actions#readme",
   "peerDependencies": {
     "@angular/core": "^6.0.0",
-    "@ngrx/effects": "6.0.0-beta.3",
-    "@ngrx/store": "6.0.0-beta.3",
+    "@ngrx/effects": "^6.0.0",
+    "@ngrx/store": "^6.0.0",
     "rxjs": "^6.0.0"
   },
   "devDependencies": {
