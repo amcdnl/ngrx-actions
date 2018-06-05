@@ -1,3 +1,6 @@
+# 4.0.0 - 6/5/18
+- BREAKING: Angular/Rx6 Support
+
 # 3.1.6 - 2/27/18
 - Fix: Effects materialize vs take
 
