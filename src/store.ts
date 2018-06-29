@@ -8,3 +8,7 @@ export function Store(initialState: any = {}) {
     meta.initialState = initialState;
   };
 }
+
+export abstract class BaseStore<TState = any> {
+  state: TState = {} as TState;
+}
