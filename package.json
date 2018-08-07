@@ -1,6 +1,6 @@
 {
   "name": "ngrx-actions",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Actions and Reducer Utility Library for NGRX",
   "main": "dist/index.js",
   "scripts": {
@@ -44,7 +44,7 @@
     "husky": "^0.14.3",
     "jasmine": "^2.8.0",
     "lint-staged": "^6.0.0",
-    "ng-packagr": "^2.4.4",
+    "ng-packagr": "^3.0.3",
     "prettier": "^1.9.2",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^6.0.0",
