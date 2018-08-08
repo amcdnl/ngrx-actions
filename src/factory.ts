@@ -21,10 +21,17 @@ export function createReducer<TState = any>(
   const instance = isInstance ? store : new store();
   const { initialState, actions, effects } = klass[NGRX_ACTIONS_META] as StoreMetadata;
 
-  return function(state: any = initialState, action: Action) {
+  return function (state: any = initialState, action: Action) {
+    const instanceHasState = instance.hasOwnProperty('state');
+    if (instanceHasState) {
+      instance.state = state;
+    }
+
     const actionMeta = actions[action.type];
     if (actionMeta) {
-      const result = instance[actionMeta.fn](state, action);
+      const result = instanceHasState ?
+        instance[actionMeta.fn](action) :
+        instance[actionMeta.fn](state, action);
       if (result === undefined) {
         if (Array.isArray(state)) {
           return [...state];
