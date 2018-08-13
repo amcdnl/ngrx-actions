@@ -192,7 +192,7 @@ export class MyComponent {
     @Select((state) => state.color) color$: Observable<string>;
 
     // Array of props
-    @Select(['my', 'prop', 'color']) color$: Observable<strinv>;
+    @Select(['my', 'prop', 'color']) color$: Observable<string>;
 
     // Deeply nested properties
     @Select('my.prop.color') color$: Observable<string>;
